@@ -1,0 +1,12 @@
+<launch>
+
+  <arg name="UAV_NAME" default="$(env UAV_NAME)" />
+  <arg name="fcu_frame" default="$(arg UAV_NAME)/fcu" />
+  <arg name="ouster_frame" default="$(arg UAV_NAME)/os_sensor" />
+  <arg name="garmin_frame" default="$(arg UAV_NAME)/garmin" />
+  <rosparam param="use_sim_time">true</rosparam>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="fcu_frame_to_ouster_frame" args="0.0 0.0 0.105 0.0 0.0 0.0 $(arg fcu_frame) $(arg ouster_frame)" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="fcu_frame_to_garmin_frame" args="0.0 0.1 -0.1 0 1.57079632679 0.0 $(arg fcu_frame) $(arg garmin_frame)" />
+
+</launch>

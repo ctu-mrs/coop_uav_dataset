@@ -1,0 +1,38 @@
+name: coop_uav_dataset
+root: ./
+startup_window: rosbag_play
+pre_window: export UAV_NAME=uav12; export ROS_MASTER_URI=http://localhost:11311; export ROS_IP=127.0.0.1
+windows:
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+        - ./waitForRos.sh; rosparam set use_sim_time true
+  - rosbag_play:
+      layout: tiled
+      panes:
+        # play the whole bag
+        # - ./waitForRos.sh; rosbag play ../forest_dataset.bag --clock -r 1.0
+        - ./waitForRos.sh; rosbag play ../rosbags/circle/primary_uav_circle.bag ../rosbags/circle/secondary_uav_circle.bag --clock -r 1.0
+        # play just the 1st second in loop and publish the /tf_static topic
+        # - ./waitForRos.sh; rosbag play ../forest_dataset.bag -u 1 -l --topics /tf_static
+  - ouster_to_pc:
+      layout: tiled
+      panes:
+        # convert the ouster LiDAR packets into PointClouds 
+        - ./waitForRos.sh; roslaunch ouster_ros uav.launch replay:=true metadata:=`pwd`/ouster_metadata.json
+  - image_republish:
+      layout: tiled
+      panes:
+        # republish compressed RGB images as raw
+        - ./waitForRos.sh; rosrun image_transport republish compressed in:=/mv_25003659/image_raw raw out:=/mv_25003659/image_raw
+  - static_tfs:
+      layout: tiled
+      panes:
+        # as an example, publish a new instance of the sensor TFs subtree
+        - ./waitForRos.sh; roslaunch ./static_tfs.launch prefix:=slam
+  - rviz:
+      layout: tiled
+      panes:
+        # run rviz
+        - ./waitForRos.sh; rosrun rviz rviz -d ./rviz.rviz
