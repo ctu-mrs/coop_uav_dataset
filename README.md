@@ -19,7 +19,7 @@ Contains data from the real-world experiments presented in
 The data are provided in the rosbag format. The system time of the UAVs was synchronized using [chrony](https://chrony.tuxfamily.org/) with the primary UAV acting as the server and the secondary UAV acting as the client.
 
 ## Primary LiDAR-equipped UAV (left)
-The primary UAV was built upon the Holybro X500 frame. It was equipped with the Ouster OS0-128 Rev C 3D LiDAR producing scans of resolution 1024 x 128 beams as 10 Hz.
+The primary UAV was built upon the Holybro X500 frame. It was equipped with the Ouster OS0-128 Rev C 3D LiDAR producing scans of resolution 1024 x 128 beams at 10 Hz.
 Use the [Ouster ROS driver](https://github.com/ctu-mrs/ouster) with the `replay` argument to generate `PointCloud2` messages from the lidar_packets.
 The `/uav35/odometry/slow_odom` was transmitted from the secondary UAV to the primary UAV over wi-fi using [nimbro_network](https://github.com/ctu-mrs/nimbro_network).
 
