@@ -2,7 +2,7 @@
 
 Contains data from the real-world experiments presented in
 
- * Václav Pritzl, Matouš Vrba, Petr Štěpán, and Martin Saska, **Fusion of Visual-Inertial Odometry with LiDAR Relative Localization for Cooperative Guidance of a Micro-Scale Aerial Vehicle**, *IEEE Robotics and Automation Letters*, 2023, under review.
+ * Václav Pritzl, Matouš Vrba, Petr Štěpán, and Martin Saska, **Fusion of Visual-Inertial Odometry with LiDAR Relative Localization for Cooperative Guidance of a Micro-Scale Aerial Vehicle**, *Robotics and Autonomous Systems*, 2023, under review.
 
 
 
